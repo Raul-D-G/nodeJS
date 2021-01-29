@@ -19,7 +19,7 @@ module.exports = {
         } else {
             res.json({
                 success: 0,
-                message: "Acesul nu este permis! Token invalid"
+                message: "Acesul nu este permis! Lipseste Token-ul"
             });
         }
     }
