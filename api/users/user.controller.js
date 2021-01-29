@@ -102,6 +102,7 @@ module.exports = {
 
     login: (req, res) => {
         const body = req.body;
+        // console.log(body);
         getUserByEmail(body.mail, (err, results) => {
             if (err) {
                 console.error(err);
@@ -113,6 +114,7 @@ module.exports = {
                     data: "Date autentificare incorecte"
                 });
             }
+            console.log(results);
             const result = compareSync(body.parola, results.parola);
             if (result) {
                 results.parola = undefined;
