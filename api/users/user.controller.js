@@ -104,17 +104,14 @@ module.exports = {
         const body = req.body;
         // console.log(body);
         getUserByEmail(body.mail, (err, results) => {
+            // console.log(results);
             if (err) {
                 console.error(err);
                 return;
             }
             if (!results) {
-                return res.json({
-                    success: 0,
-                    data: "Date autentificare incorecte"
-                });
+                return res.status(404).send('Date Autentificare incorecte');
             }
-            console.log(results);
             const result = compareSync(body.parola, results.parola);
             if (result) {
                 results.parola = undefined;
