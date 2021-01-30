@@ -8,9 +8,9 @@ module.exports = {
             [
                 data.mail,
                 data.parola,
-                data.nume,
-                data.adresa,
-                data.cui
+                data.numeCompanie,
+                data.adresaCompanie,
+                data.cuiCompanie
             ],
             (error, results, fields) => {
                 if (error) {

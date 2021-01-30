@@ -102,12 +102,11 @@ module.exports = {
 
     login: (req, res) => {
         const body = req.body;
-        // console.log(body);
         getUserByEmail(body.mail, (err, results) => {
             // console.log(results);
             if (err) {
                 console.error(err);
-                return;
+                return res.status(500).send(err);
             }
             if (!results) {
                 return res.status(404).send('Date Autentificare incorecte');
@@ -118,21 +117,19 @@ module.exports = {
                 const jsontoken = sign({ result: result }, process.env.QWE, {
                     expiresIn: "1h"
                 });
-                return res.json({
+                return res.status(200).json({
                     success: 1,
                     message: "Autentificare reusita",
                     token: jsontoken
                 });
             }
             else {
-                return res.json({
-                    success: 0,
-                    data: "Date autentificare incorecte"
+                return res.status(401).json({
+                    error: "Date autentificare incorecte"
                 });
             }
 
         });
     }
-
 
 }
