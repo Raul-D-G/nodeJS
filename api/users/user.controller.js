@@ -114,7 +114,7 @@ module.exports = {
             const result = compareSync(body.parola, results.parola);
             if (result) {
                 results.parola = undefined;
-                const jsontoken = sign({ result: result }, process.env.QWE, {
+                const jsontoken = sign({ user: results }, process.env.QWE, {
                     expiresIn: "1h"
                 });
                 return res.status(200).json({
