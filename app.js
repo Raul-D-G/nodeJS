@@ -18,7 +18,10 @@ app.all("/*", function (req, res, next) {
 });
 
 const userRouter = require("./api/users/user.router");
+const transporturiRouter = require("./api/transporturi/transport.router");
+
 app.use("/api/users", userRouter);
+app.use("/api/transporturi", transporturiRouter);
 
 
 app.listen(process.env.APP_PORT, () => {
