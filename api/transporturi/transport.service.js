@@ -6,7 +6,7 @@ module.exports = {
 
     getTransporturi: callBack => {
         pool.query(
-            `SELECT id, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
+            `SELECT id, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
             FROM transporturi`,
             [],
             (error, results, fields) => {
