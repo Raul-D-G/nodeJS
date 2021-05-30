@@ -24,7 +24,7 @@ module.exports = {
 
   getUsers: (callBack) => {
     pool.query(
-      `SELECT id, mail, nume, adresa, cui
+      `SELECT id, rol, mail, nume, adresa, cui
             FROM users`,
       [],
       (error, results, fields) => {
@@ -38,7 +38,7 @@ module.exports = {
 
   getUserById: (id, callBack) => {
     pool.query(
-      `SELECT id, mail, nume, adresa, cui
+      `SELECT id, rol, mail, nume, adresa, cui
             FROM users
              WHERE id = ? `,
       [id],
@@ -54,9 +54,17 @@ module.exports = {
 
   updateUser: (data, callBack) => {
     pool.query(
-      `UPDATE users SET mail=?, parola=?, nume=?, adresa=?, cui=?
+      `UPDATE users SET rol=?, mail=?, parola=?, nume=?, adresa=?, cui=?
              WHERE id=?`,
-      [data.mail, data.parola, data.nume, data.adresa, data.cui, data.id],
+      [
+        data.rol,
+        data.mail,
+        data.parola,
+        data.nume,
+        data.adresa,
+        data.cui,
+        data.id,
+      ],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
