@@ -3,7 +3,7 @@ const pool = require("../../config/database");
 module.exports = {
   getTransporturi: (callBack) => {
     pool.query(
-      `SELECT id, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
+      `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
             FROM transporturi`,
       [],
       (error, results, fields) => {
