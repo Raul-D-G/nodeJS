@@ -36,4 +36,18 @@ module.exports = {
       }
     );
   },
+  getTransporturiByCompanieId: (id, callBack) => {
+    pool.query(
+      `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
+            FROM transporturi
+              WHERE idExpeditor = ? `,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
 };
