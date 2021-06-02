@@ -51,6 +51,19 @@ module.exports = {
       }
     );
   },
+  deleteTransport: (id, callBack) => {
+    pool.query(
+      `DELETE FROM transporturi WHERE id=?`,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        } else {
+          return callBack(null, results);
+        }
+      }
+    );
+  },
 
   test: (data, callBack) => {
     const axios = require("axios");

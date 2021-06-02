@@ -2,6 +2,7 @@ const {
   getTransporturi,
   register,
   getTransporturiByCompanieId,
+  deleteTransport,
   test,
 } = require("./transport.service");
 
@@ -65,6 +66,25 @@ module.exports = {
       return res.json({
         success: 0,
         message: "Compania nu are transporturi inregistrate",
+      });
+    });
+  },
+  deleteTransport: (req, res) => {
+    const id = req.params.id;
+    deleteTransport(id, (err, results) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      if (!results) {
+        return res.json({
+          success: 0,
+          message: "Inregistrarea nu afost gasita",
+        });
+      }
+      return res.json({
+        success: 1,
+        message: "Transport sters",
       });
     });
   },
