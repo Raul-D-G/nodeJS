@@ -36,6 +36,7 @@ module.exports = {
       }
     );
   },
+
   getTransporturiByCompanieId: (id, callBack) => {
     pool.query(
       `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
@@ -49,5 +50,29 @@ module.exports = {
         return callBack(null, results);
       }
     );
+  },
+
+  test: (data, callBack) => {
+    const axios = require("axios");
+    axios
+      .post(
+        "https://track2.cargotrack.ro/gateway/tracking/v20160301/objects/",
+        data,
+        {
+          headers: {
+            Authorization: "49e44366-c037-4040-af1d-35f7da16034b",
+          },
+        }
+      )
+      .then((res) => {
+        // var re = {
+        //   lat: res.data.items[0].latitude,
+        //   lgn: res.data.items[0].longitude,
+        // };
+        return callBack(null, res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
