@@ -5,6 +5,7 @@ const http = require("http");
 
 const userRouter = require("./api/users/user.router");
 const transporturiRouter = require("./api/transporturi/transport.router");
+const tranzactiiRouter = require("./api/tranzactii/tranzactii.router");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.all("/*", function (req, res, next) {
 
 app.use("/api/users", userRouter);
 app.use("/api/transporturi", transporturiRouter);
+app.use("/api/tranzactii", tranzactiiRouter);
 
 const server = http.createServer(app);
 
@@ -36,7 +38,12 @@ io.on("connection", (socket) => {
   console.log("User connected", socket.id);
 
   socket.on("dorescTransport", (msg) => {
-    console.log(msg);
+    const data = {
+      idExpeditor: msg.transport.idExpeditor,
+      idTransportator: msg.idTransportator,
+      idTransport: msg.transport.id,
+    };
+    // console.log(data);
   });
 });
 

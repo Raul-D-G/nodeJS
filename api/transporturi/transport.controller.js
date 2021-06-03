@@ -6,8 +6,6 @@ const {
   test,
 } = require("./transport.service");
 
-const { sign } = require("jsonwebtoken");
-
 module.exports = {
   getTransporturi: (req, res) => {
     const id = req.params.id;
