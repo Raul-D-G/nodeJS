@@ -1,11 +1,12 @@
 const pool = require("../../config/database");
 
 module.exports = {
-  getTransporturi: (callBack) => {
+  getTransporturi: (id, callBack) => {
     pool.query(
       `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
-            FROM transporturi`,
-      [],
+            FROM transporturi
+            WHERE idExpeditor <> ?`,
+      [id],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
@@ -14,6 +15,7 @@ module.exports = {
       }
     );
   },
+
   register: (data, callBack) => {
     pool.query(
       `INSERT INTO transporturi(idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km)
@@ -51,6 +53,7 @@ module.exports = {
       }
     );
   },
+
   deleteTransport: (id, callBack) => {
     pool.query(
       `DELETE FROM transporturi WHERE id=?`,

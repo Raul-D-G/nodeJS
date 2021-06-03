@@ -9,7 +9,7 @@ const { checkToken } = require("../../auth/token_validation");
 
 const router = require("express").Router();
 
-router.get("/", checkToken, getTransporturi);
+router.get("/bursa/:id", checkToken, getTransporturi);
 router.post("/", checkToken, registerTransport);
 router.get("/:id", checkToken, getTransporturiByCompanieId);
 router.delete("/:id", checkToken, deleteTransport);

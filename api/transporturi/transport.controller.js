@@ -10,7 +10,8 @@ const { sign } = require("jsonwebtoken");
 
 module.exports = {
   getTransporturi: (req, res) => {
-    getTransporturi((err, results) => {
+    const id = req.params.id;
+    getTransporturi(id, (err, results) => {
       if (err) {
         console.error(err);
         return;
@@ -69,6 +70,7 @@ module.exports = {
       });
     });
   },
+
   deleteTransport: (req, res) => {
     const id = req.params.id;
     deleteTransport(id, (err, results) => {
