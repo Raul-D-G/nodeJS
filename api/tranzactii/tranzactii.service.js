@@ -14,4 +14,19 @@ module.exports = {
       }
     );
   },
+
+  deleteTranzactie: (id, callBack) => {
+    pool.query(
+      `DELETE FROM tranzactietransport
+                WHERE idTransport = ?`,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        } else {
+          return callBack(null, results);
+        }
+      }
+    );
+  },
 };

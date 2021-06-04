@@ -1,4 +1,4 @@
-const { create } = require("./tranzactii.service");
+const { create, deleteTranzactie } = require("./tranzactii.service");
 
 module.exports = {
   createTranzactie: (req, res) => {
@@ -13,6 +13,20 @@ module.exports = {
       return res.status(200).json({
         succesc: 1,
         message: "Tranzactia a fost inregistrata",
+      });
+    });
+  },
+
+  deleteTranzactie: (req, res) => {
+    const id = req.params.id;
+    deleteTranzactie(id, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      return res.json({
+        succesc: 1,
+        message: "Tranzactie stearsa",
       });
     });
   },

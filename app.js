@@ -25,7 +25,7 @@ app.all("/*", function (req, res, next) {
 app.use("/api/users", userRouter);
 app.use("/api/transporturi", transporturiRouter);
 app.use("/api/tranzactii", tranzactiiRouter);
-
+var users = [];
 const server = http.createServer(app);
 
 const io = socketio(server, {
@@ -37,13 +37,19 @@ const io = socketio(server, {
 io.on("connection", (socket) => {
   console.log("User connected", socket.id);
 
+  socket.on("setSocketId", (idUser) => {
+    users[idUser] = socket.id;
+  });
+
   socket.on("dorescTransport", (msg) => {
     const data = {
-      idExpeditor: msg.transport.idExpeditor,
+      idExpeditor: msg.idExpeditor,
       idTransportator: msg.idTransportator,
-      idTransport: msg.transport.id,
+      transport: msg.transport,
     };
-    // console.log(data);
+    var socketId = users[data.idExpeditor];
+    socket.to(socketId).emit("ofertaTransport", data);
+    // socket.emit("ofertaTransport", data);
   });
 });
 
