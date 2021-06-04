@@ -2,7 +2,6 @@ const pool = require("../../config/database");
 
 module.exports = {
   create: (data, callBack) => {
-    console.log(data);
     pool.query(
       `INSERT INTO tranzactietransport(idTransport, idTransportator, idExpeditor)
                     VALUES(?,?,?)`,
