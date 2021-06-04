@@ -39,6 +39,31 @@ module.exports = {
     );
   },
 
+  transportEfectuat: (data, callBack) => {
+    pool.query(
+      `INSERT INTO transporturiefectuate(idTransport, idTransportator, tipMarfa,
+        taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km)
+                    VALUES(?,?,?,?,?,?,?,?,?)`,
+      [
+        data.idTransport,
+        data.idTransportator,
+        data.tipMarfa,
+        data.taraIncarcare,
+        data.orasIncarcare,
+        data.taraDescarcare,
+        data.orasDescarcare,
+        data.pret,
+        data.km,
+      ],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   getTransporturiByCompanieId: (id, callBack) => {
     pool.query(
       `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
