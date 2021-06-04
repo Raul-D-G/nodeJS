@@ -49,7 +49,12 @@ io.on("connection", (socket) => {
     };
     var socketId = users[data.idExpeditor];
     socket.to(socketId).emit("ofertaTransport", data);
-    // socket.emit("ofertaTransport", data);
+  });
+
+  socket.on("respingereTransportator", (resping) => {
+    idTransport = resping.idTransportator;
+    var socketId = users[idTransport];
+    socket.to(socketId).emit("respingere", resping);
   });
 });
 

@@ -1,4 +1,8 @@
-const { create, deleteTranzactie } = require("./tranzactii.service");
+const {
+  create,
+  deleteTranzactie,
+  getTranzactiiByExpeditorId,
+} = require("./tranzactii.service");
 
 module.exports = {
   createTranzactie: (req, res) => {
@@ -27,6 +31,22 @@ module.exports = {
       return res.json({
         succesc: 1,
         message: "Tranzactie stearsa",
+      });
+    });
+  },
+  getTranzactiiByExpeditorId: (req, res) => {
+    const idExpeditor = req.params.idExpeditor;
+    getTranzactiiByExpeditorId(id, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      if (typeof results !== "undefined" && results.length > 0) {
+        return res.json(results);
+      }
+      return res.json({
+        success: 0,
+        message: "Compania nu are tranzactii inregistrate",
       });
     });
   },

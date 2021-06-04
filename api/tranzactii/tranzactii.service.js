@@ -29,4 +29,18 @@ module.exports = {
       }
     );
   },
+  getTranzactiiByExpeditorId: (id, callBack) => {
+    pool.query(
+      `SELECT idTransport, idTransportator, idExpeditor
+            FROM tranzactietransport
+              WHERE idExpeditor = ? `,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
 };
