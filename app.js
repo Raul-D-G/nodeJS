@@ -52,9 +52,15 @@ io.on("connection", (socket) => {
   });
 
   socket.on("respingereTransportator", (resping) => {
-    idTransport = resping.idTransportator;
-    var socketId = users[idTransport];
+    idTransportator = resping.idTransportator;
+    var socketId = users[idTransportator];
     socket.to(socketId).emit("respingere", resping);
+  });
+
+  socket.on("acceptaTrasnport", (accepta) => {
+    idTransportator = accepta.idTransportator;
+    var socketId = users[idTransportator];
+    socket.to(socketId).emit("acceptare", accepta);
   });
 });
 

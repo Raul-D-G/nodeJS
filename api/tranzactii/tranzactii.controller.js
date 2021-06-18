@@ -36,7 +36,7 @@ module.exports = {
   },
   getTranzactiiByExpeditorId: (req, res) => {
     const idExpeditor = req.params.idExpeditor;
-    getTranzactiiByExpeditorId(id, (err, results) => {
+    getTranzactiiByExpeditorId(idExpeditor, (err, results) => {
       if (err) {
         console.log(err);
         return;
