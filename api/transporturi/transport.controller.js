@@ -1,4 +1,5 @@
 const {
+  getTrasnportById,
   getTransporturi,
   register,
   getTransporturiByCompanieId,
@@ -8,6 +9,17 @@ const {
 } = require("./transport.service");
 
 module.exports = {
+  getTrasnportById: (req, res) => {
+    const id = req.params.id;
+    getTrasnportById(id, (err, results) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      return res.json(results);
+    });
+  },
+
   getTransporturi: (req, res) => {
     const id = req.params.id;
     getTransporturi(id, (err, results) => {

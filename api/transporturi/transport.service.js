@@ -1,6 +1,21 @@
 const pool = require("../../config/database");
 
 module.exports = {
+  getTrasnportById: (id, callBack) => {
+    pool.query(
+      `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
+            FROM transporturi
+            WHERE id = ?`,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results[0]);
+      }
+    );
+  },
+
   getTransporturi: (id, callBack) => {
     pool.query(
       `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km

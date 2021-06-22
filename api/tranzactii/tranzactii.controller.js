@@ -35,7 +35,7 @@ module.exports = {
     });
   },
   getTranzactiiByExpeditorId: (req, res) => {
-    const idExpeditor = req.params.idExpeditor;
+    const idExpeditor = req.params.id;
     getTranzactiiByExpeditorId(idExpeditor, (err, results) => {
       if (err) {
         console.log(err);
@@ -44,10 +44,7 @@ module.exports = {
       if (typeof results !== "undefined" && results.length > 0) {
         return res.json(results);
       }
-      return res.json({
-        success: 0,
-        message: "Compania nu are tranzactii inregistrate",
-      });
+      return res.json([]);
     });
   },
 };
