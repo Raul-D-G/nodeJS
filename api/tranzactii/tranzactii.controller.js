@@ -30,7 +30,7 @@ module.exports = {
       }
       return res.json({
         succesc: 1,
-        message: "Tranzactie stearsa",
+        message: "Tranzacție ștearsă",
       });
     });
   },

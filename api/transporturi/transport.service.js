@@ -16,6 +16,21 @@ module.exports = {
     );
   },
 
+  getTransporturiEfectuate: (id, callBack) => {
+    pool.query(
+      `SELECT idTransport, idTransportator, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
+            FROM transporturiefectuate
+            WHERE idTransportator = ?`,
+      [id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   getTransporturi: (id, callBack) => {
     pool.query(
       `SELECT id, idExpeditor, tipMarfa, taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km
@@ -55,13 +70,15 @@ module.exports = {
   },
 
   transportEfectuat: (data, callBack) => {
+    console.log(data);
     pool.query(
-      `INSERT INTO transporturiefectuate(idTransport, idTransportator, tipMarfa,
+      `INSERT INTO transporturiefectuate(idTransport, idTransportator, idExpeditor, tipMarfa,
         taraIncarcare, orasIncarcare, taraDescarcare, orasDescarcare, pret, km)
-                    VALUES(?,?,?,?,?,?,?,?,?)`,
+                    VALUES(?,?,?,?,?,?,?,?,?,?)`,
       [
         data.idTransport,
         data.idTransportator,
+        data.idCompanie,
         data.tipMarfa,
         data.taraIncarcare,
         data.orasIncarcare,

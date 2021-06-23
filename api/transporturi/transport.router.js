@@ -1,4 +1,5 @@
 const {
+  getTransporturiEfectuate,
   getTrasnportById,
   getTransporturi,
   registerTransport,
@@ -18,6 +19,7 @@ router.post("/efectuat", checkToken, transportEfectuat);
 router.get("/:id", checkToken, getTransporturiByCompanieId);
 router.get("/bursa/:id", checkToken, getTransporturi);
 router.get("/transport/:id", checkToken, getTrasnportById);
+router.get("/efectuat/:id", checkToken, getTransporturiEfectuate);
 
 router.delete("/:id", checkToken, deleteTransport);
 

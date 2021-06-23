@@ -1,4 +1,5 @@
 const {
+  getTransporturiEfectuate,
   getTrasnportById,
   getTransporturi,
   register,
@@ -19,6 +20,16 @@ module.exports = {
       return res.json(results);
     });
   },
+  getTransporturiEfectuate: (req, res) => {
+    const id = req.params.id;
+    getTransporturiEfectuate(id, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      return res.status(200).json(results);
+    });
+  },
 
   getTransporturi: (req, res) => {
     const id = req.params.id;
@@ -27,7 +38,7 @@ module.exports = {
         console.error(err);
         return;
       }
-      return res.json(results);
+      return res.status(200).json(results);
     });
   },
 
