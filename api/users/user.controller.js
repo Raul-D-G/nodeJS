@@ -113,10 +113,14 @@ module.exports = {
       // console.log(results);
       if (err) {
         console.error(err);
-        return res.status(500).send(err);
+        return res.status(500).json({
+          error: "Probleme server!",
+        });
       }
       if (!results) {
-        return res.status(404).send("Date Autentificare incorecte");
+        return res.status(404).json({
+          error: "Date autentificare incorecte!",
+        });
       }
       const result = compareSync(body.parola, results.parola);
       if (result) {
@@ -126,12 +130,12 @@ module.exports = {
         });
         return res.status(200).json({
           success: 1,
-          message: "Autentificare reusita",
+          message: "Autentificare reușită!",
           token: jsontoken,
         });
       } else {
-        return res.status(401).json({
-          error: "Date autentificare incorecte",
+        return res.status(402).json({
+          error: "Date autentificare incorecte!",
         });
       }
     });
